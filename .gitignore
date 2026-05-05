@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Builds
+frontend/build/
+**/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Uploads (keep folder, ignore user media)
+backend/uploads/leave-voice/*
+!backend/uploads/leave-voice/.gitkeep
+
+# Optional local docs build artifacts
+*.docx.bak
