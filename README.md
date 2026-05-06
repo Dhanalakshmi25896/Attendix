@@ -6,7 +6,6 @@
 
 - **`frontend/`** — React app (dashboard, login/signup, leave, employees)
 - **`backend/`** — Express API, MySQL, JWT auth, Swagger docs
-- **`docs/`** — Workflow documentation (Markdown + Word)
 
 ## Quick start
 
