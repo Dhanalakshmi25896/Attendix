@@ -1,6 +1,8 @@
 const path = require("path");
 const swaggerJsdoc = require("swagger-jsdoc");
 
+const API_PUBLIC_URL = process.env.API_PUBLIC_URL || `http://localhost:${process.env.PORT || 8081}`;
+
 module.exports = swaggerJsdoc({
   definition: {
     openapi: "3.0.0",
@@ -9,7 +11,7 @@ module.exports = swaggerJsdoc({
       version: "1.0.0"
     },
     servers: [
-      { url: "http://localhost:8081/api/activitylogs" }
+      { url: `${API_PUBLIC_URL}/api/activitylogs` }
     ],
     components: {
       securitySchemes: {

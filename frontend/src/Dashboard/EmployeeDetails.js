@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE from '../config/api';
 
 export default function EmployeeDetails() {
   const [employeeData, setEmployeeData] = useState(null);
@@ -18,7 +19,7 @@ export default function EmployeeDetails() {
   const fetchEmployeeDetails = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8081/api/employees/me', {
+      const res = await axios.get(`${API_BASE}/api/employees/me`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -42,7 +43,7 @@ export default function EmployeeDetails() {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:8081/api/employees/search?query=${encodeURIComponent(searchQuery)}`, {
+      const res = await axios.get(`${API_BASE}/api/employees/search?query=${encodeURIComponent(searchQuery)}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

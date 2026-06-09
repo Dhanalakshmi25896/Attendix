@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const API_BASE = 'http://localhost:8081';
+import API_BASE from '../config/api';
 
 export default function AdminLeaves({ onUpdate }) {
   const [leaves, setLeaves] = useState([]);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
-
-const API_BASE = 'http://localhost:8081';
+import API_BASE from '../config/api';
 
 const TOTAL_LEAVES = 15;
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_BASE from '../config/api';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Style.css';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +42,7 @@ export default function Login() {
     setMessage('');
 
     try {
-      const res = await axios.post('http://localhost:8081/api/login', {
+      const res = await axios.post(`${API_BASE}/api/login`, {
         username: input.username,
         password: input.password,
       });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE from '../config/api';
 
 export default function Home() {
   const [attendance, setAttendance] = useState({
@@ -28,7 +29,7 @@ export default function Home() {
   const fetchAttendanceHistory = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8081/api/activitylogs/activity/my', {
+      const res = await axios.get(`${API_BASE}/api/activitylogs/activity/my`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -57,7 +58,7 @@ export default function Home() {
       const token = localStorage.getItem('token');
       const checkInTime = new Date().toLocaleTimeString();
       
-      const res = await axios.post('http://localhost:8081/api/activitylogs/activity/login', {}, {
+      const res = await axios.post(`${API_BASE}/api/activitylogs/activity/login`, {}, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -88,7 +89,7 @@ export default function Home() {
       const token = localStorage.getItem('token');
       const checkOutTime = new Date().toLocaleTimeString();
       
-      const res = await axios.post('http://localhost:8081/api/activitylogs/activity/logout', {}, {
+      const res = await axios.post(`${API_BASE}/api/activitylogs/activity/logout`, {}, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

@@ -17,6 +17,8 @@ const notificationRoutes = require("./routes/notification.routes");
 const db = require("./config/db");
 
 const app = express();
+const PORT = process.env.PORT || 8081;
+const API_PUBLIC_URL = process.env.API_PUBLIC_URL || `http://localhost:${PORT}`;
 
 app.use(cors({
   origin: "*",
@@ -31,10 +33,10 @@ app.get("/", (req, res) =>
   res.json({
     message: "API is running",
     docs: {
-      user: "http://localhost:8081/api-docs",
-      employee: "http://localhost:8081/employee-api-docs",
-      leave: "http://localhost:8081/leave-api-docs",
-      activitylogs: "http://localhost:8081/activitylogs-api-docs"
+      user: `${API_PUBLIC_URL}/api-docs`,
+      employee: `${API_PUBLIC_URL}/employee-api-docs`,
+      leave: `${API_PUBLIC_URL}/leave-api-docs`,
+      activitylogs: `${API_PUBLIC_URL}/activitylogs-api-docs`
     }
   })
 );
@@ -68,8 +70,8 @@ app.use("/activitylogs-api-docs",
   swaggerUi.setup(activitySwagger)
 );
 
-app.listen(8081, () => {
-  console.log("Server running on port 8081");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
   const createNotificationsTable = `
     CREATE TABLE IF NOT EXISTS notifications (
       notification_id INT AUTO_INCREMENT PRIMARY KEY,

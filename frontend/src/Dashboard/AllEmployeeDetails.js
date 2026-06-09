@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE from '../config/api';
 
 export default function AllEmployeeDetails({ focusUserId, onFocusHandled }) {
   const [employees, setEmployees] = useState([]);
@@ -33,7 +34,7 @@ export default function AllEmployeeDetails({ focusUserId, onFocusHandled }) {
   const fetchAllEmployees = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8081/api/employees', {
+      const res = await axios.get(`${API_BASE}/api/employees`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -56,7 +57,7 @@ export default function AllEmployeeDetails({ focusUserId, onFocusHandled }) {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8081/api/employees/${employeeId}`, {
+      await axios.delete(`${API_BASE}/api/employees/${employeeId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

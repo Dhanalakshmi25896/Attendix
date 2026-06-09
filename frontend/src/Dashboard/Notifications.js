@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
+import API_BASE from "../config/api";
 
-const API_BASE = "http://localhost:8081/api/notifications";
-const LEAVES_API = "http://localhost:8081/api/leaves/leaves";
+const NOTIFICATIONS_API = `${API_BASE}/api/notifications`;
+const LEAVES_API = `${API_BASE}/api/leaves/leaves`;
 
 export default function Notifications({ isOpen, onClose, onUpdate, isAdmin, onNavigateToLeave }) {
   const [notifications, setNotifications] = useState([]);
@@ -35,7 +36,7 @@ export default function Notifications({ isOpen, onClose, onUpdate, isAdmin, onNa
 
   const loadUnreadCount = useCallback(async () => {
     try {
-      const res = await axios.get(`${API_BASE}/unread`, {
+      const res = await axios.get(`${NOTIFICATIONS_API}/unread`, {
         headers: getAuthHeader(),
       });
       setUnreadCount(res.data?.unread_count || 0);
@@ -53,7 +54,7 @@ export default function Notifications({ isOpen, onClose, onUpdate, isAdmin, onNa
 
   const loadNotifications = useCallback(async () => {
     try {
-      const res = await axios.get(API_BASE, {
+      const res = await axios.get(NOTIFICATIONS_API, {
         headers: getAuthHeader(),
       });
       const rows = Array.isArray(res.data) ? res.data : [];
@@ -144,7 +145,7 @@ export default function Notifications({ isOpen, onClose, onUpdate, isAdmin, onNa
     setNotifications((prev) => prev.filter((n) => Number(n.notification_id) !== numId));
     try {
       await axios.post(
-        `${API_BASE}/read`,
+        `${NOTIFICATIONS_API}/read`,
         { notification_id: numId },
         { headers: getAuthHeader() }
       );
@@ -165,7 +166,7 @@ export default function Notifications({ isOpen, onClose, onUpdate, isAdmin, onNa
     setNotifications([]);
     try {
       await axios.post(
-        `${API_BASE}/read`,
+        `${NOTIFICATIONS_API}/read`,
         {},
         { headers: getAuthHeader() }
       );

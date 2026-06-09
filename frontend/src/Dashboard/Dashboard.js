@@ -11,6 +11,7 @@ import AdminLeaves from './AdminLeaves';
 import AllEmployeeDetails from './AllEmployeeDetails';
 import Notifications from './Notifications';
 import axios from 'axios';
+import API_BASE from '../config/api';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export default function Dashboard() {
   const fetchUnreadCount = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8081/api/notifications/unread', {
+      const res = await axios.get(`${API_BASE}/api/notifications/unread`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

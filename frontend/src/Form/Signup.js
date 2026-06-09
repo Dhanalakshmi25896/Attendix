@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import API_BASE from "../config/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import validation from "./Signupvalidation";
@@ -49,7 +50,7 @@ export function Signup() {
     setMessage('');
 
     try {
-      const res = await axios.post("http://localhost:8081/api/signup", {
+      const res = await axios.post(`${API_BASE}/api/signup`, {
         name: input.name,
         email: input.email,
         password: input.password,
