@@ -147,12 +147,12 @@ function LeaveVoiceNotePreview({ voiceBlob, onRemove, disabled }) {
       return;
     }
     const url = URL.createObjectURL(voiceBlob);
+    const audio = audioRef.current;
     setObjectUrl(url);
     return () => {
-      const a = audioRef.current;
-      if (a) {
+      if (audio) {
         try {
-          a.pause();
+          audio.pause();
         } catch {
           /* ignore */
         }
